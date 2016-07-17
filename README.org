@@ -1,0 +1,6 @@
+
+* 编译
+  : mvn install
+
+* 测试
+  : java -cp frame-simple/target/frame-simple-1.0.jar me.ifjy.swingtest.SimpleFrameTest
