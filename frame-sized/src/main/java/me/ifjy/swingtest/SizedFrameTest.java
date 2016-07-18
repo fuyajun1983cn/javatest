@@ -32,7 +32,7 @@ class SizedFrame extends JFrame
         setLocationByPlatform(true);
 
         //set frame title and icon
-        Image img = kit.getImage("logo.png");
+        Image img = kit.getImage(SizedFrame.class.getClassLoader().getResource("logo.png"));
         setIconImage(img);
         setTitle("SizedFrame");
     }
