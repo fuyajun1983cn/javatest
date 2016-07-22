@@ -18,6 +18,8 @@
     <module>frame-simple</module>
     <module>frame-sized</module>
     <module>frame-string</module>
+    <module>frame-draw2d</module>
+    <module>frame-image</module>
   </modules>
 
   <dependencyManagement>
