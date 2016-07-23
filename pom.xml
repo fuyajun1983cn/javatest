@@ -20,6 +20,9 @@
     <module>frame-string</module>
     <module>frame-draw2d</module>
     <module>frame-image</module>
+    <module>frame-font</module>
+    <module>event-button</module>
+    <module>look-feel</module>
   </modules>
 
   <dependencyManagement>

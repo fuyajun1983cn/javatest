@@ -1,0 +1,53 @@
+
+* 术语
+
+[[./image1.png]]
+
+* 代码说明
+
+  getStringBounds()返回的矩形宽度是字符串水平方向的宽度，矩形的高度是
+  上坡度，下坡度，行间距的总和。这个矩形始于字符串的基线，矩形顶部的y
+  坐标为负值。
+
+* 代码示例
+
+  #+BEGIN_SRC java
+    class FontComponent extends JComponent
+    {
+        public void paintComponent(Graphics g)
+        {
+            Graphics2D g2 = (Graphics2D)g;
+
+            String message = "Hello, world1, gf";
+
+            Font f = new Font("Serif", Font.BOLD, 36);
+            g2.setFont(f);
+
+            //measure the size of the message
+            FontRenderContext context = g2.getFontRenderContext();
+            Rectangle2D bounds = f.getStringBounds(message, context);
+
+            // set (x, y)  = top-left corner of text
+
+            double x = (getWidth() - bounds.getWidth()) / 2;
+            double y = (getHeight() - bounds.getHeight()) / 2;
+
+            //add ascent to y to reach the baseline
+            double ascent = -bounds.getY();
+            double baseY = y + ascent;
+
+            //draw the message
+            g2.drawString(message, (int)x, (int)baseY);
+
+            g2.setPaint(Color.LIGHT_GRAY);
+
+            //draw the base line
+            g2.draw(new Line2D.Double(x, baseY, x + bounds.getWidth(), baseY));
+
+            //draw the enclosing rectangle
+            Rectangle2D rect = new Rectangle2D.Double(x, y, bounds.getWidth(), bounds.getHeight());
+            g2.draw(rect);
+        }
+    }
+      
+  #+END_SRC
