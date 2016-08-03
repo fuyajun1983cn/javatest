@@ -17,6 +17,7 @@
   <modules>
     <module>text-file</module>
     <module>nio-test</module>
+    <module>regex-test</module>
   </modules>
 
   <dependencyManagement>
