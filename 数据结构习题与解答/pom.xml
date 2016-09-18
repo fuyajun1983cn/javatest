@@ -16,6 +16,7 @@
   </properties>
   <modules>
     <module>ch01</module>
+    <module>ch02</module>
   </modules>
 
   <dependencyManagement>
