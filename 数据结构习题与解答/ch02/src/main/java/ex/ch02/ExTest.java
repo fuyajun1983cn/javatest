@@ -56,6 +56,29 @@ public class ExTest
         Arrays.print(c);
         reverse(c);
         Arrays.print(c);
+
+        //Ex14
+        System.out.println("-------Ex14 Test----------");
+        Object[] d = new Object[10];
+        Arrays.load(d, 0, 10);
+        Arrays.print(d);
+        Object[] e = new Object[5];
+        Arrays.load(e, 0, 5);
+        Arrays.print(e);
+        Arrays.print(concatenate(d,e));
+
+        System.out.println("-------Ex15 Test----------");
+        Object[] f = new Object[10];
+        Arrays.load(f, 34, 65);
+        Arrays.print(f, "f");
+        shuffle(f);
+        Arrays.print(f, "f");
+
+        System.out.println("--------Ex16 Test----------");
+        int r[] = tally("thissfadsfsfwfwefsdfsfsf");
+        for (int i = 0;i < 26; i++) {
+            System.out.println("Frequency of " + (char)('a' + i) + " = " + r[i]);
+        }
     }
 
     /**
@@ -130,8 +153,8 @@ public class ExTest
                 if (a[j] == a[i])
                     a[j] = x;
         }
-        int count; //count hte duplicate
-        for (int i = 1;; i < a.length; i++) {
+        int count = 0; //count hte duplicate
+        for (int i = 1; i < a.length; i++) {
             if (a[i] == x)
                 count++;
         }
@@ -156,7 +179,7 @@ public class ExTest
      * Ex13:
      * 将数组倒序
      */
-    private static void reverse(int[] a)
+    private static void reverse(int[ ] a)
     {
         int n = a.length;
         for (int i = 0; i < n/2; i++) {
@@ -165,7 +188,91 @@ public class ExTest
             a[n - 1 -i] = tmp;
         }
     }
-    
+
+    /**
+     * Ex14:
+     * 返回一个数组，该数组中的成份的前部分与数组a[]中相同，后面部分与数组b[]中相同。
+     */
+    private static Object[] concatenate(Object a[ ], Object b[ ])
+    {
+        if (a == null && b == null)
+            return null;
+        if (a == null && b != null)
+            return b;
+        if (a != null && b == null)
+            return a;
+
+        Object[] result = new Object[a.length + b.length];
+        System.arraycopy(a, 0, result, 0, a.length);
+        System.arraycopy(b, 0, result, a.length, b.length);
+
+        return result;
+   }
+
+    /**
+     * Ex15:
+     * 对数组的成份进行随机性序列调整
+     */
+    private static void shuffle(Object [] a)
+    {
+        if (a == null)
+            return;
+        Random r = new Random();
+        int n = a.length;
+        for (int i = 0;i < n; i++) {
+            Arrays.swap(a, i, r.nextInt(a.length));
+        }
+    }
+
+    /**
+     * Ex16:
+     * 返回一个26个整数值的数组a，该数组记录了字符串string中各个字母（不区分大小写）的
+     * 出现频率。
+     */
+    private static int[] tally(String string)
+    {
+        int[] a = new int[26];
+        for (int i =0; i < 26; i++)
+            a[i] = 0;
+
+        for (int i = 0; i < string.length(); i++) {
+            char c = Character.toLowerCase(string.charAt(i));
+            if (Character.isLetter(c))
+                ++a[(int)c - (int)'a'];
+
+        }
+        
+        return a;
+    }
+
+    /**
+     * Ex17:
+     * 两个向量的内积
+     */
+    private static double innerProduct(double[] x, double[] y)
+    {
+        if (x.length != y.length)
+            return 0;
+        double result = 0;
+        for (int i = 0; i < x.length; i++) {
+            result += x[i] * y[i];
+        }
+        return result;
+    }
+
+    /**
+     * Ex18:
+     * 两个向量的外积
+     *
+     */
+    private static double[][] outerProduct(double[] x, double[] y)
+    {
+        double[][] z = new double[x.length][y.length];
+        for (int i = 0; i < x.length; i++)
+            for (int j = 0; j < y.length; j++)
+                z[i][j] = x[i]y[j];
+        return z;
+    }
 }
 
 class Arrays
