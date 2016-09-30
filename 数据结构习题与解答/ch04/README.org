@@ -1,0 +1,147 @@
+#+CENTER
+要点记录
+#+CENTER
+
+
+* 阶乘函数
+  
+** 递归实现
+   #+BEGIN_SRC java
+     public static int f (int n)
+     {
+         if (n == 0)   //basic
+             return 1;
+         return n * f(n-1); //recursive part
+     }
+   #+END_SRC
+
+** 迭代实现
+   #+BEGIN_SRC java
+     public int f(int n)
+     {
+         int result = 1;
+         for (int i = 2; i <= n; i++)
+             result *= i;
+         return result;
+     }
+   #+END_SRC
+
+* 斐波那契数列
+
+** 递归实现
+   #+BEGIN_SRC java
+     public static int fib(n)
+     {
+         if (n < 2)
+             return n;
+         return fib(n - 1) + f(n - 2);
+     }
+   #+END_SRC
+
+** 迭代
+   #+BEGIN_SRC java
+     public static int fib(int n)
+     {
+         if ( n < 2)
+             return n;
+         int []f = new int[n];
+         f[0] = 0;
+         f[1] = 1;
+         for (int i = 2; i <  n; i++)
+             f[i] = f[i-1] + f[i-2];
+         return f[n-1] + f[n-2];
+     }
+   #+END_SRC
+
+* 折半查找
+
+** 递归实现
+   #+BEGIN_SRC java
+     public static int search (int []a, int lo, int  hi, int x)
+     {
+         if (lo > hi)
+             return -1;
+         int i = (lo + hi) / 2;
+         if (a[i] == x)
+             return i;
+         else if (a[i] < x)
+             return search (a, i+1, hi, x);
+         else
+             return search(a, lo, i - 1, x);
+     }
+   #+END_SRC
+
+* 二项式系数
+  二项式系数排列成一个三角形的话，三角形中的每一个内部数为其直接上邻的
+  两数之和。
+  
+** 递归实现
+   #+BEGIN_SRC java
+     public static int c(int n, int k)
+     {
+         if (k == 0 || k == n)  //递归基
+             return 1;
+         return c(n - 1, k - 1) + c(n - 1, k);//递归部分
+     }
+   #+END_SRC
+
+** 迭代实现
+   #+BEGIN_SRC java
+     public static int c(int n, int k)// 二项式系数与组合数学中的组合数是一样的。
+     {
+         int c = 1;
+         for (int i = 1; i <= k; k++)
+             c = c * (n - i + 1) / i;
+         return c;
+     }
+   #+END_SRC
+
+* 欧几里德算法
+
+** 递归实现
+   计算两个正整数的最大公约数：
+   反复从较大的数m中减去较小的数n，直到差值d比n小为止，然后让d扮演n的
+   角色，而n扮演m的角色，即反复从较大的数n中减去较小的数d，重复上述过
+   程直到减数与差相等为止。这个值就是最初两个数的最大公约数。
+
+   #+BEGIN_SRC java
+     public static int gcd(int m, int n)
+     {
+         if (m == n)
+             return n; //递归基
+         else if (m < n)
+             return gcd(m, n - m);
+         else
+             return gcd(m - n, n);
+     }
+   #+END_SRC
+
+* 动态规则
+  用一个数组来保存先前计算的结果，而不像递归时那样重复计算，这种方法称
+  为动态规划。
+  
+  见斐波那契函数的动态递归实现。
+
+* 汉内塔
+  算法描述：
+  1. 将柱x上较小的n-1个盘移到柱z。
+  2. 将柱x上的剩余的盘移到柱y。
+  3. 将柱z上的n-1个盘移到柱y。
+
+** 递归实现
+   #+BEGIN_SRC java
+     public static void runHanoi(int n, char x, char y, char z)
+     {
+         if (n == 1)
+             System.out.println("Move top disk from peg " + x + "  to peg  " + z);
+         else {
+             runHanoi(n - 1, x, z, y);
+             runHanoi(1, x, y, z);
+             runHanoi(n - 1, y, x , z);
+         }
+     }
+   #+END_SRC
+
+* 互递归
+  是一个函数调用其他的另一个函数，这个函数最终调用最开始的那个函数，称
+  为间接递归。

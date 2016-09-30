@@ -270,7 +270,7 @@ public class ExTest
         double[][] z = new double[x.length][y.length];
         for (int i = 0; i < x.length; i++)
             for (int j = 0; j < y.length; j++)
-                z[i][j] = x[i]y[j];
+                z[i][j] = x[i] * y[j];
         return z;
     }
 }

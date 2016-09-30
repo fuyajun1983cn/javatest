@@ -45,7 +45,7 @@
 * 以下定义中有什么错误？
   : Arrays arryas = new Arrays();
 
-  Arrays类不能被实例化，这是由于它的构造函数是私有的（private)。）
+  Arrays类不能被实例化，这是由于它的构造函数是私有的(private)。
 
 * 打印一个对象数组的简单方法是什么？
 
