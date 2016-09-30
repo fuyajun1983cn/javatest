@@ -273,6 +273,58 @@ public class ExTest
                 z[i][j] = x[i] * y[j];
         return z;
     }
+
+    /**
+     * Ex19
+     *将两个数组看成是矩阵，该方法返回两矩阵的乘积
+     */
+    private static double[][] product(double[][] a, double[][] b)
+    {
+        //a的列数与b的行数相同
+        if (a[0].length != b.length) {
+            System.out.println("Cannot compute product for the two array");
+            return null;
+        }
+            
+        double[][] p = new dboule[a.length][b[0].length];
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < b[0].length; j++) {
+                p[i][j] = 0.0;
+                for (int k = 0; k < a[0].length; k++)
+                    p[i][j] += a[i][k]*a[k][j];
+            }
+        }
+        return p;
+    }
+
+    /**
+     * Ex20
+     * 把数组看成矩阵，计算矩阵的转置
+     */
+    private static double[][] transpose(double[][] a)
+    {
+        double[][] result = new double[a[0].length][a.length];
+        for (int i = 0; i < a[0].length; i++)
+            for (int j = 0; j < a.length; j++) {
+                result[i][j] = a[j][i];
+            }
+    }
+
+    /**
+     * Ex21
+     * 返回给定大小的帕斯卡三角形(杨辉三角)
+     */
+    private static int[][] pascal(int size)
+    {
+        int result[][] = new int[size][size];
+        //每行第一个和最后一个元素都是1
+        for (int j = 0; j < n; j++)
+            result[j][0] = result[j][j] = 1;
+        for (int i = 2; i < size; i++)
+            for (int j = 2; j < i; j++)
+                result[i][j] = a[i-1][j-1] + a[i-1][j];
+        return result;
+    }
 }
 
 class Arrays
