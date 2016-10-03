@@ -286,7 +286,7 @@ public class ExTest
             return null;
         }
             
-        double[][] p = new dboule[a.length][b[0].length];
+        double[][] p = new double[a.length][b[0].length];
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < b[0].length; j++) {
                 p[i][j] = 0.0;
@@ -308,6 +308,7 @@ public class ExTest
             for (int j = 0; j < a.length; j++) {
                 result[i][j] = a[j][i];
             }
+        return result;
     }
 
     /**
@@ -318,11 +319,11 @@ public class ExTest
     {
         int result[][] = new int[size][size];
         //每行第一个和最后一个元素都是1
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < size; j++)
             result[j][0] = result[j][j] = 1;
         for (int i = 2; i < size; i++)
             for (int j = 2; j < i; j++)
-                result[i][j] = a[i-1][j-1] + a[i-1][j];
+                result[i][j] = result[i-1][j-1] + result[i-1][j];
         return result;
     }
 }
